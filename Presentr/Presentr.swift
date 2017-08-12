@@ -85,6 +85,8 @@ public class Presentr: NSObject {
 
     /// Opacity of the background. Default is 0.7.
     public var backgroundOpacity: Float = 0.7
+    
+    var popupHeight: Float = 0
 
     /// Should the presented controller blur the background. Default is false.
     public var blurBackground = false
@@ -200,7 +202,7 @@ extension Presentr: UIViewControllerTransitioningDelegate {
                                     keyboardTranslationType:  keyboardTranslationType,
                                     dismissAnimated: dismissAnimated,
                                     contextFrameForPresentation: contextFrameForPresentation,
-                                    shouldIgnoreTapOutsideContext: shouldIgnoreTapOutsideContext)
+                                    shouldIgnoreTapOutsideContext: shouldIgnoreTapOutsideContext, popupHeight: popupHeight)
     }
 
 }

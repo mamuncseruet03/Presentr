@@ -37,6 +37,8 @@ class PresentrController: UIPresentationController, UIAdaptivePresentationContro
 
     /// A custom background view to be added on top of the regular background view.
     let customBackgroundView: UIView?
+    
+    var popupHeight: Float = 0
 
     fileprivate var conformingPresentedController: PresentrDelegate? {
         return presentedViewController as? PresentrDelegate
@@ -88,8 +90,9 @@ class PresentrController: UIPresentationController, UIAdaptivePresentationContro
          keyboardTranslationType: KeyboardTranslationType,
          dismissAnimated: Bool,
          contextFrameForPresentation: CGRect?,
-         shouldIgnoreTapOutsideContext: Bool) {
+         shouldIgnoreTapOutsideContext: Bool, popupHeight: Float = 0) {
 
+        self.popupHeight = popupHeight
         self.presentationType = presentationType
         self.dismissOnTap = dismissOnTap
         self.dismissOnSwipe = dismissOnSwipe
@@ -311,7 +314,7 @@ fileprivate extension PresentrController {
             return 0
         }
 
-        return size.height.calculateHeight(parentSize)
+        return self.popupHeight > 0 ? self.popupHeight : size.height.calculateHeight(parentSize)
     }
 
     func getCenterPointFromType() -> CGPoint? {
